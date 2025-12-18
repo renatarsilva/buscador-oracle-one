@@ -14,16 +14,23 @@ public class Principal {
 
         try{
             /*
-             * ENTENDENDO A LÓGICA DO FLUXO:
-             * 1. Assim como 'String nome = "Maki"' define que a variável 'nome' segue o molde da CLASSE String,
-             * 'Endereco novoEndereco' define que a variável 'novoEndereco' (um espaço na memória)
-             * segue o molde da CLASSE Endereco.
-             * * 2. A variável 'novoEndereco' recebe o OBJETO RESULTANTE do metodo 'buscaEndereco',
-             * que pertence à instância 'consultaCEP'.
-             * * 3. O metodo 'buscaEndereco' utiliza o parâmetro 'cep', que foi capturado
-             * pelo Scanner através da digitação do usuário.
-             * * 4. EM RESUMO: O Java cria a classe (molde), define atributos/métodos, instancia objetos
-             * e faz esses objetos colaborarem entre si para executar a tarefa.
+             * ENTENDENDO A LÓGICA DO FLUXO COMPLETO:
+             * 1. DECLARAÇÃO E ATRIBUIÇÃO: Assim como 'String nome = "Maki"' define que a variável segue o molde da CLASSE String,
+             * 'Endereco novoEndereco' reserva um espaço na memória para um objeto que segue o molde do RECORD Endereco.
+             * Essa variável recebe o OBJETO RESULTANTE que o metodo 'buscaEndereco' fabricou após consultar a internet.
+             *
+             * 2. EXIBIÇÃO: 'System.out.println(novoEndereco)' usa o metodo interno do Record para mostrar na tela
+             * os dados que foram capturados (Estado do Objeto).
+             *
+             * 3. COLABORAÇÃO ENTRE OBJETOS: Criamos uma nova instância 'GeradorDeArquivo gerador'. Esse objeto é um
+             * "especialista" em salvar arquivos. Ao chamarmos 'gerador.salvaJson(novoEndereco)', passamos o nosso
+             * objeto completo como parâmetro para que ele seja transformado em um arquivo físico (.json).
+             *
+             * 4. A REDE DE SEGURANÇA (TRY-CATCH): O bloco 'try' tenta realizar toda essa operação. Se a internet falhar
+             * (RuntimeException) ou se o disco estiver cheio/protegido (IOException), o Java captura o erro no objeto 'e'.
+             *
+             * 5. FINALIZAÇÃO: Em vez do programa "quebrar", o 'catch' exibe a mensagem de erro amigável e finaliza
+             * a aplicação de forma controlada.
              */
 
             Endereco novoEndereco = consultaCEP.buscaEndereco(cep);
