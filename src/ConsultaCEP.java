@@ -6,7 +6,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-/**
+/*
  * LÓGICA DA CLASSE E DO METODO DE CONSULTA:
  * * 1. A classe 'ConsultaCEP' funciona como uma classe de serviço: não possui atributos,
  * apenas o metodo público 'buscaEndereco'.
@@ -30,6 +30,17 @@ public class ConsultaCEP {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(endereco)
                 .build();
+
+        /*
+         * LÓGICA DO BLOCO TRY-CATCH:
+         * 1. O 'try' tenta executar a comunicação com a rede.
+         * 2. 'HttpResponse<String> response' armazena a resposta completa do servidor.
+         * 3. Utilizamos 'Method Chaining' para criar o HttpClient e enviar a requisição (.send).
+         * 4. Se a comunicação funcionar, o 'Gson' transforma o corpo da resposta (JSON)
+         * em um objeto do tipo 'Endereco' e o retorna.
+         * 5. Se qualquer erro ocorrer, o 'catch' captura a 'Exception' (objeto 'e') e
+         * lança uma 'RuntimeException' com uma mensagem personalizada, interrompendo o fluxo.
+         */
 
         try {
             HttpResponse<String> response = HttpClient
